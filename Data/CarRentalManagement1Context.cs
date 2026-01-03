@@ -1,20 +1,12 @@
 ﻿using CarRentalManagement1.Configurations.Entities;
-using CarRentalManagement1.Domain;
+using CarRentalManagement1.Data;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CarRentalManagement1.Data
 {
-    public class CarRentalManagement1Context : DbContext
+    public class CarRentalManagement1Context(DbContextOptions<CarRentalManagement1Context> options) : IdentityDbContext<CarRentalManagement1User>(options)
     {
-        public CarRentalManagement1Context (DbContextOptions<CarRentalManagement1Context> options)
-            : base(options)
-        {
-        }
-
         public DbSet<CarRentalManagement1.Domain.Make> Make { get; set; } = default!;
         public DbSet<CarRentalManagement1.Domain.Model> Model { get; set; } = default!;
         public DbSet<CarRentalManagement1.Domain.Customer> Customer { get; set; } = default!;
